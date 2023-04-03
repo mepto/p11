@@ -4,11 +4,3 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.2
 Werkzeug==2.2.3
-
-# Tests
-pytest==7.2.2
-coverage==7.2.2
-locust==2.15.1
-
-# ci
-flake8==6.0.0
