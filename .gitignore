@@ -2,6 +2,6 @@ bin
 include
 lib
 .Python
-tests/
+.idea/
 .envrc
 __pycache__
