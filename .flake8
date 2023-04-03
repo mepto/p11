@@ -1,0 +1,13 @@
+[flake8]
+max-line-length = 119
+select = B,C,E,F,W,T4,B9
+# Ignore 1 blank line before docstring, return before operator
+ignore = D203, W503
+exclude =
+    # No need to traverse our git directory
+    .git,
+    # No checking cache directories
+    __pycache__,
+    # No checking venv
+    venv,
+max-complexity = 10
