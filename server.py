@@ -1,7 +1,7 @@
 import json
 from flask import flash, Flask, redirect, render_template, request, url_for
 
-from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR
+from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR, NOT_ENOUGH_POINTS
 
 
 def load_clubs():
@@ -56,9 +56,12 @@ def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     places_required = int(request.form['places'])
-    competition['nb_places'] = int(competition['nb_places']) - \
-                             places_required
-    flash(BOOKING_OK)
+    club_points = int(club['points'])
+    if places_required > club_points:
+        flash(NOT_ENOUGH_POINTS)
+    elif places_required <= club_points:
+        competition['nb_places'] = int(competition['nb_places']) - places_required
+        flash(BOOKING_OK)
     return render_template('welcome.html', club=club, competitions=competitions)
 
 

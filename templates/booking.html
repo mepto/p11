@@ -6,7 +6,8 @@
 </head>
 <body>
     <h2>{{ competition['name'] }}</h2>
-    Places available: {{ competition['nb_places'] }}
+    <p>Places available: {{ competition['nb_places'] }}</p>
+    <p>Club points available: {{ club['points'] }}</p>
     <form action="/purchase_places" method="post">
         <input type="hidden" name="club" value="{{ club['name'] }}">
         <input type="hidden" name="competition" value="{{ competition['name'] }}">
