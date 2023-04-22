@@ -1,6 +1,6 @@
 from flask import flash, Flask, redirect, render_template, request, url_for
 
-from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR, NOT_ENOUGH_POINTS
+from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR, MAX_PLACES, MORE_THAN_12_PLACES, NOT_ENOUGH_POINTS
 from app.utils import load_clubs, load_competitions
 
 app = Flask(__name__, template_folder="app/templates")
@@ -46,7 +46,9 @@ def purchase_places():
     club_points = int(club['points'])
     if places_required > club_points:
         flash(NOT_ENOUGH_POINTS)
-    elif places_required <= club_points:
+    if places_required > MAX_PLACES:
+        flash(MORE_THAN_12_PLACES)
+    if places_required <= club_points and places_required < MAX_PLACES:
         competition['nb_places'] = int(competition['nb_places']) - places_required
         flash(BOOKING_OK)
     return render_template('welcome.html', club=club, competitions=competitions)
