@@ -1,22 +1,9 @@
-import json
 from flask import flash, Flask, redirect, render_template, request, url_for
 
 from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR, NOT_ENOUGH_POINTS
+from app.utils import load_clubs, load_competitions
 
-
-def load_clubs():
-    """Return list of clubs based on clubs file."""
-    with open('clubs.json') as c:
-        return json.load(c)['clubs']
-
-
-def load_competitions():
-    """Return list of competitions based on competitions file."""
-    with open('competitions.json') as comps:
-        return json.load(comps)['competitions']
-
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder="app/templates")
 app.secret_key = 'something_special'
 
 competitions = load_competitions()

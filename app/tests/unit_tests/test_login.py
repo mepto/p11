@@ -1,5 +1,5 @@
 from constants import EMAIL_ERROR
-from tests.data import DataForTests
+from app.tests.data import DataForTests
 
 
 def test_login_unknown_email(client):
