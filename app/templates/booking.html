@@ -6,13 +6,18 @@
 </head>
 <body>
     <h2>{{ competition['name'] }}</h2>
+    <h3>{{ competition['date'] }}</h3>
     <p>Places available: {{ competition['nb_places'] }}</p>
     <p>Club points available: {{ club['points'] }}</p>
-    <form action="/purchase_places" method="post">
-        <input type="hidden" name="club" value="{{ club['name'] }}">
-        <input type="hidden" name="competition" value="{{ competition['name'] }}">
-        <label for="places">How many places?</label><input type="number" name="places" id=""/>
-        <button type="submit">Book</button>
-    </form>
+    {% if competition['is_active'] %}
+        <form action="/purchase_places" method="post">
+            <input type="hidden" name="club" value="{{ club['name'] }}">
+            <input type="hidden" name="competition" value="{{ competition['name'] }}">
+            <label for="places">How many places?</label><input type="number" name="places" id=""/>
+            <button type="submit">Book</button>
+        </form>
+    {% else %}
+        <p>You can no longer book places for this competition.</p>
+    {% endif %}
 </body>
 </html>

@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 import pytest
 
 import server
@@ -24,7 +26,7 @@ def test_club_purchasing_places(client, club_points, competition_places, places_
         server.competitions = [
             {
                 'name': 'Compet1',
-                'date': '2023-07-27 10:00:00',
+                'date': (date.today() + timedelta(days=30)).strftime("%Y-%m-%d %H:%M:%S"),
                 'nb_places': competition_places
             }
         ]
