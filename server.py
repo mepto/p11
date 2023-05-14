@@ -9,11 +9,6 @@ from app.utils import load_clubs, load_competitions
 app = Flask(__name__, template_folder="app/templates")
 app.secret_key = 'something_special'
 
-#
-# @app.context_processor
-# def inject_today_date():
-#     return {'today_date': date.today()}
-
 
 competitions = load_competitions()
 clubs = load_clubs()
@@ -62,6 +57,7 @@ def purchase_places():
         flash(MORE_THAN_12_PLACES)
     if places_required <= club_points and places_required < MAX_PLACES and competition_date > date.today():
         competition['nb_places'] = int(competition['nb_places']) - places_required
+        club['points'] = int(club['points']) - places_required
         flash(BOOKING_OK)
     return render_template('welcome.html', club=club, competitions=competitions)
 
