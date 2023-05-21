@@ -13,6 +13,7 @@ from constants import BOOKING_OK, MAX_PLACES, PAST_COMPETITION_DATE
                          ])
 def test_clubs_book_past_competition(client, competition_date, expected_result):
     """Test booking depending on competition dates."""
+    # TODO: rename function
     original_clubs = server.clubs
     try:
         server.clubs = [

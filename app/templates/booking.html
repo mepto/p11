@@ -8,7 +8,7 @@
     <h2>{{ competition['name'] }}</h2>
     <h3>{{ competition['date'] }}</h3>
     <p>Places available: {{ competition['nb_places'] }}</p>
-    <p>Club points available: {{ club['points'] }}</p>
+    <p>Club points available for {{ club['name'] }}: {{ club['points'] }}</p>
     {% if competition['is_active'] %}
         <form action="/purchase_places" method="post">
             <input type="hidden" name="club" value="{{ club['name'] }}">

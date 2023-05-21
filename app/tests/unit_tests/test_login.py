@@ -1,6 +1,8 @@
 from constants import EMAIL_ERROR
 from app.tests.data import DataForTests
 
+# TODO use decode on x.data instead of encode
+
 
 def test_login_unknown_email(client):
     """Check the system provide a human-readable error on unknown email."""
