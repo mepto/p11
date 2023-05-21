@@ -24,7 +24,9 @@ def test_points_board(client):
 
         assert response.status_code == 200
         for club in server.clubs:
-            assert f"<h3>{ club['name'] } (secretary: { club['email'] }</h3>" in response.data.decode()
-            assert f"<p>Points balance: { club['points'] }</p>" in response.data.decode()
+            assert f'<h3 class="item-name">{club["name"]} <span class="small">Secretary: {club["email"]}</span></h3>' \
+                   in \
+                   response.data.decode()
+            assert f'<p>Points balance: <span class="points">{club["points"]}</span></p>' in response.data.decode()
     finally:
         server.clubs = original_clubs

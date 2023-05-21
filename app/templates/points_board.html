@@ -1,16 +1,11 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clubs points board</title>
-</head>
-<body>
-<h1>Clubs points board</h1>
-<a href="{{ url_for('logout') }}">Logout</a>
-{% for club in clubs %}
-  <h3>{{ club['name'] }} (secretary: {{ club['email'] }}</h3>
-  <p>Points balance: {{ club['points'] }}</p>
-  <br>
-{% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Clubs points board{% endblock %}
+{% block title_page %}Clubs points board{% endblock %}
+{% block main %}
+  {% for club in clubs %}
+    <h3 class="item-name">{{ club['name'] }} <span class="small">Secretary: {{ club['email']
+        }}</span></h3>
+    <p>Points balance: <span class="points">{{ club['points'] }}</span></p>
+    <hr>
+  {% endfor %}
+{% endblock %}

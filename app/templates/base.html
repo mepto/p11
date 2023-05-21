@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='gudlft-logo.png') }}"/>
+    <a class="active" href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('show_points_board') }}">Dashboard</a>
+    {% if club is defined and club['email'] %}
+      <a href="{{ url_for('show_summary') }}">Summary</a>
+      <a href="{{ url_for('logout') }}">logout</a>
+    {% endif %}
+  </div>
+  <div class="main">
+    <h1>{% block title_page %}{% endblock %}</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <div class="messages">
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+      </div>
+      {% endif %}
+      {% block main %}
+      {% endblock %}
+      </div>
+      </div>
+    {% endwith %}
+</body>
+</html>

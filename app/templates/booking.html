@@ -1,23 +1,20 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking for {{ competition['name'] }} || GUDLFT</title>
-</head>
-<body>
-    <h2>{{ competition['name'] }}</h2>
-    <h3>{{ competition['date'] }}</h3>
-    <p>Places available: {{ competition['nb_places'] }}</p>
-    <p>Club points available for {{ club['name'] }}: {{ club['points'] }}</p>
-    {% if competition['is_active'] %}
-        <form action="/purchase_places" method="post">
-            <input type="hidden" name="club" value="{{ club['name'] }}">
-            <input type="hidden" name="competition" value="{{ competition['name'] }}">
-            <label for="places">How many places?</label><input type="number" name="places" id=""/>
-            <button type="submit">Book</button>
-        </form>
-    {% else %}
-        <p>You can no longer book places for this competition.</p>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Booking for {{ competition['name'] }} || GÜDLFT{% endblock %}
+{% block title_page %}Booking for {{ competition['name'] }}{% endblock %}
+{% block main %}
+  <h2>{{ competition['name'] }}</h2>
+  <h3>{{ competition['date'] }}</h3>
+  <p>Places available: {{ competition['nb_places'] }}</p>
+  <p>Club points available for {{ club['name'] }}: {{ club['points'] }}</p>
+  {% if competition['is_active'] %}
+    <form action="/purchase_places" method="post">
+      <input type="hidden" name="club" value="{{ club['name'] }}">
+      <input type="hidden" name="competition" value="{{ competition['name'] }}">
+      <label for="places">How many places?</label><input type="number"
+                                                         name="places" id=""/>
+      <button type="submit">Book</button>
+    </form>
+  {% else %}
+    <p>You can no longer book places for this competition.</p>
+  {% endif %}
+{% endblock %}

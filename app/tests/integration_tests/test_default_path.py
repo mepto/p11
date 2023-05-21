@@ -16,7 +16,8 @@ def test_default_success_path(client):
     board = client.get('/points_board')
     assert board.status_code == 200
     for club in clubs:
-        assert f"<h3>{club['name']} (secretary: {club['email']}</h3>" in board.data.decode()
+        assert f'<h3 class="item-name">{club["name"]} <span class="small">Secretary: {club["email"]}</span></h3>' in \
+               board.data.decode()
 
     # Check homepage display
     home = client.get('/')

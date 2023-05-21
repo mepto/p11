@@ -6,7 +6,10 @@ from constants import BOOKING_OK, EMAIL_ERROR, GENERIC_ERROR, MAX_PLACES, MORE_T
     PAST_COMPETITION_DATE
 from app.utils import load_clubs, load_competitions
 
-app = Flask(__name__, template_folder="app/templates")
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='app/components',
+            template_folder='app/templates')
 app.secret_key = 'something_special'
 
 

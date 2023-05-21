@@ -1,45 +1,27 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary | GUDLFT Registration</title>
-</head>
-<body>
-    <h2>Welcome, {{ club['email'] }} </h2>
-    <a href="{{ url_for('logout') }}">
-        Logout</a>
-    <br>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul>
-       {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-       </ul>
-    {% endif %}
-    Points available: {{ club['points'] }}
-    <h3>Competitions:</h3>
-    <ul>
-        {% for comp in competitions %}
+{% extends 'base.html' %}
+{% block title %}Summary | GÜDLFT Registration{% endblock %}
+{% block title_page %}Welcome, {{ club['email'] }}{% endblock %}
+{% block main %}
+    Your points available: {{ club['points'] }}
+    <h2>Competitions:</h2>
+    <ul class="comp-list">
+      {% for comp in competitions %}
         <li>
-            {{ comp['name'] }}<br />
-            Date: {{ comp['date'] }}<br/>
-            Number of Places: {{ comp['nb_places'] }}
-            {% if comp['is_active'] %}
-                {% if comp['nb_places']|int > 0 %}
-                    <a href="{{ url_for('book',competition=comp['name'],
+          <span class="item-name">{{ comp['name'] }}</span>
+          Date: {{ comp['date'] }}<br/>
+          Number of Places: {{ comp['nb_places'] }}<br/>
+          {% if comp['is_active'] %}
+            {% if comp['nb_places']|int > 0 %}
+              <a class="btn" href="{{ url_for('book',competition=comp['name'],
                        club=club['name']) }}">Book Places</a>
-                {% else %}
-                    <button disabled>No places left</button>
-                {%endif%}
             {% else %}
-                <button disabled>Booking closed</button>
-            {%endif%}
+              <button disabled>No places left</button>
+            {% endif %}
+          {% else %}
+            <button disabled>Booking closed</button>
+          {% endif %}
         </li>
-        <hr />
-        {% endfor %}
+        <hr/>
+      {% endfor %}
     </ul>
-    {%endwith%}
-
-</body>
-</html>
+{% endblock %}
