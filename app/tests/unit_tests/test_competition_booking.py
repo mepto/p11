@@ -11,9 +11,8 @@ from constants import BOOKING_OK, MAX_PLACES, PAST_COMPETITION_DATE
                              ((date.today() - timedelta(days=30)).strftime("%Y-%m-%d %H:%M:%S"),
                               PAST_COMPETITION_DATE),
                          ])
-def test_clubs_book_past_competition(client, competition_date, expected_result):
+def test_clubs_book_competition(client, competition_date, expected_result):
     """Test booking depending on competition dates."""
-    # TODO: rename function
     original_clubs = server.clubs
     try:
         server.clubs = [
