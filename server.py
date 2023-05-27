@@ -58,7 +58,7 @@ def purchase_places():
         flash(NOT_ENOUGH_POINTS)
     if places_required > MAX_PLACES:
         flash(MORE_THAN_12_PLACES)
-    if places_required <= club_points and places_required < MAX_PLACES and competition_date > date.today():
+    if places_required <= club_points and places_required <= MAX_PLACES and competition_date > date.today():
         competition['nb_places'] = int(competition['nb_places']) - places_required
         club['points'] = int(club['points']) - places_required
         flash(BOOKING_OK)

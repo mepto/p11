@@ -10,7 +10,8 @@ from constants import BOOKING_OK, MAX_PLACES, MORE_THAN_12_PLACES, NOT_ENOUGH_PO
                          [
                              ('1', '3', 3, False, NOT_ENOUGH_POINTS),
                              ('15', '45', MAX_PLACES + 1, False, MORE_THAN_12_PLACES),
-                             ('1', '3', 1, True, BOOKING_OK)
+                             ('1', '3', 1, True, BOOKING_OK),
+                             ('13', '45', 12, True, BOOKING_OK)
                          ])
 def test_club_purchasing_places(client, club_points, competition_places, places_requested,
                                 points_changed, result_expected):
