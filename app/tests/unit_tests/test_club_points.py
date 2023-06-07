@@ -17,6 +17,7 @@ def test_club_purchasing_places(client, club_points, competition_places, places_
                                 points_changed, result_expected):
     """Test clubs purchasing competition places."""
     original_clubs = server.clubs
+    original_competitions = server.competitions
     try:
         server.clubs = [
             {
@@ -40,3 +41,4 @@ def test_club_purchasing_places(client, club_points, competition_places, places_
         assert result_expected in response.data.decode()
     finally:
         server.clubs = original_clubs
+        server.competitions = original_competitions

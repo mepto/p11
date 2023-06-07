@@ -14,6 +14,7 @@ from constants import BOOKING_OK, MAX_PLACES, PAST_COMPETITION_DATE
 def test_clubs_book_competition(client, competition_date, expected_result):
     """Test booking depending on competition dates."""
     original_clubs = server.clubs
+    original_competitions = server.competitions
     try:
         server.clubs = [
             {
@@ -35,3 +36,4 @@ def test_clubs_book_competition(client, competition_date, expected_result):
         assert expected_result in response.data.decode()
     finally:
         server.clubs = original_clubs
+        server.competitions = original_competitions
